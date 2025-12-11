@@ -42,8 +42,7 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
                   }
                   className={cn(
                     "w-full flex items-center justify-between px-6 py-4 text-primary-foreground transition-all",
-                    "hover:bg-sidebar-hover",
-                    hasActiveChild && "bg-sidebar-hover border-l-4 border-primary-foreground"
+                    (isExpanded || hasActiveChild) && "bg-sidebar-hover"
                   )}
                 >
                   <span className="text-base">{item.name}</span>
