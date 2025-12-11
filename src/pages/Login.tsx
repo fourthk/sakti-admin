@@ -9,32 +9,39 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const mockUsers = [
+    { username: "teknisi", password: "123456", role: "teknisi" as const, name: "Teknisi User", email: "teknisi@sakti.go.id", instansi: "Diskominfo" },
+    { username: "kasi", password: "121212", role: "kasi" as const, name: "Kasi User", email: "kasi@sakti.go.id", instansi: "Diskominfo" },
+    { username: "kabid", password: "131313", role: "kabid" as const, name: "Kabid User", email: "kabid@sakti.go.id", instansi: "Diskominfo" },
+    { username: "diskominfo", password: "141414", role: "diskominfo" as const, name: "Diskominfo User", email: "diskominfo@sakti.go.id", instansi: "Diskominfo" },
+  ];
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      const res = await fetch(`${API_BASE}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const result = await res.json();
-      const token = result?.data?.token;
-      const user = result?.data?.user;
-      if (!token) throw new Error("Token not found");
+    const user = mockUsers.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
+      const token = `mock-token-${user.role}-${Date.now()}`;
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify({
+        id: user.username,
+        username: user.username,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        instansi: user.instansi,
+      }));
       toast.success("Login successful");
       navigate("/");
-    } catch {
+    } else {
       toast.error("Login failed. Please check your credentials.");
-    } finally {
-      setLoading(false);
     }
+
+    setLoading(false);
   };
 
   return (
