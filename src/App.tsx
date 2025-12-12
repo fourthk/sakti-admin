@@ -8,6 +8,7 @@ import DashboardLayout from "./components/layout/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import Emergency from "./pages/Emergency";
 import ChangeRequest from "./pages/ChangeRequest";
+import ChangeRequestDetail from "./pages/ChangeRequestDetail";
 import ChangeResults from "./pages/ChangeResults";
 import ChangeSchedule from "./pages/ChangeSchedule";
 import PatchJob from "./pages/PatchJob";
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="/" element={<Dashboard />} />
               <Route path="/emergency" element={<Emergency />} />
               <Route path="/change-request" element={<ChangeRequest />} />
+              <Route path="/change-request/:id" element={<ChangeRequestDetail />} />
               <Route path="/change-schedule" element={<ChangeSchedule />} />
               <Route path="/change-results" element={<ChangeResults />} />
               <Route path="/patch-job" element={<PatchJob />} />
