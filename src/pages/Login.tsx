@@ -11,9 +11,9 @@ const Login = () => {
 
   const mockUsers = [
     { username: "teknisi", password: "123456", role: "teknisi" as const, name: "Teknisi User", email: "teknisi@sakti.go.id", instansi: "Diskominfo" },
-    { username: "kasi", password: "121212", role: "kasi" as const, name: "Kasi User", email: "kasi@sakti.go.id", instansi: "Diskominfo" },
-    { username: "kabid", password: "131313", role: "kabid" as const, name: "Kabid User", email: "kabid@sakti.go.id", instansi: "Diskominfo" },
-    { username: "diskominfo", password: "141414", role: "diskominfo" as const, name: "Diskominfo User", email: "diskominfo@sakti.go.id", instansi: "Diskominfo" },
+    { username: "kasi", password: "131313", role: "kasi" as const, name: "Kasi User", email: "kasi@sakti.go.id", instansi: "Diskominfo" },
+    { username: "kabid", password: "141414", role: "kabid" as const, name: "Kabid User", email: "kabid@sakti.go.id", instansi: "Diskominfo" },
+    { username: "diskominfo", password: "151515", role: "diskominfo" as const, name: "Diskominfo User", email: "diskominfo@sakti.go.id", instansi: "Diskominfo" },
   ];
 
   const handleLogin = async (e: React.FormEvent) => {
