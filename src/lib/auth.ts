@@ -1,4 +1,4 @@
-export const API_BASE = "https://api.example.com";
+export const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://api.example.com";
 
 export type UserRole = "teknisi" | "kasi" | "kabid" | "diskominfo";
 
@@ -16,10 +16,12 @@ export const getMenuItemsByRole = (role: UserRole) => {
     case "teknisi":
       return [
         { name: "Dashboard", path: "/" },
+        { name: "Emergency", path: "/emergency" },
         {
           name: "Change Management",
           subItems: [
             { name: "Change Request", path: "/change-request" },
+            { name: "Schedule", path: "/change-schedule" },
             { name: "Change Results", path: "/change-results" },
           ],
         },
@@ -27,10 +29,10 @@ export const getMenuItemsByRole = (role: UserRole) => {
           name: "Patch Management",
           subItems: [
             { name: "Patch Job", path: "/patch-job" },
+            { name: "Schedule", path: "/patch-schedule" },
             { name: "Patch Results", path: "/patch-results" },
           ],
         },
-        { name: "Schedule", path: "/schedule" },
         { name: "CMDB", path: "/cmdb" },
       ];
     case "kasi":

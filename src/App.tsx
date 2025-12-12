@@ -6,14 +6,18 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
+import Emergency from "./pages/Emergency";
 import ChangeRequest from "./pages/ChangeRequest";
 import ChangeResults from "./pages/ChangeResults";
+import ChangeSchedule from "./pages/ChangeSchedule";
 import PatchJob from "./pages/PatchJob";
 import PatchResults from "./pages/PatchResults";
-import Schedule from "./pages/Schedule";
+import PatchSchedule from "./pages/PatchSchedule";
 import CMDB from "./pages/CMDB";
 import Approval from "./pages/Approval";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { isAuthenticated } from "./lib/auth";
 
 const queryClient = new QueryClient();
 
@@ -24,16 +28,25 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route element={<DashboardLayout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/change-request" element={<ChangeRequest />} />
-            <Route path="/change-results" element={<ChangeResults />} />
-            <Route path="/patch-job" element={<PatchJob />} />
-            <Route path="/patch-results" element={<PatchResults />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/cmdb" element={<CMDB />} />
-            <Route path="/approval" element={<Approval />} />
+          <Route
+            path="/login"
+            element={
+              isAuthenticated() ? <Navigate to="/" replace /> : <Login />
+            }
+          />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<DashboardLayout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/emergency" element={<Emergency />} />
+              <Route path="/change-request" element={<ChangeRequest />} />
+              <Route path="/change-schedule" element={<ChangeSchedule />} />
+              <Route path="/change-results" element={<ChangeResults />} />
+              <Route path="/patch-job" element={<PatchJob />} />
+              <Route path="/patch-schedule" element={<PatchSchedule />} />
+              <Route path="/patch-results" element={<PatchResults />} />
+              <Route path="/cmdb" element={<CMDB />} />
+              <Route path="/approval" element={<Approval />} />
+            </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
