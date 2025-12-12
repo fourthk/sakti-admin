@@ -15,6 +15,7 @@ import PatchResults from "./pages/PatchResults";
 import PatchSchedule from "./pages/PatchSchedule";
 import CMDB from "./pages/CMDB";
 import Approval from "./pages/Approval";
+import ApprovalDetail from "./pages/ApprovalDetail";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { isAuthenticated } from "./lib/auth";
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/patch-results" element={<PatchResults />} />
               <Route path="/cmdb" element={<CMDB />} />
               <Route path="/approval" element={<Approval />} />
+              <Route path="/approval/:id" element={<ApprovalDetail />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
